@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "311069201488",
+    "project_id": "befill",
+    "storage_bucket": "befill.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311069201488:android:31a9d3c10ab6951bf56d55",
+        "android_client_info": {
+          "package_name": "com.befill.retailer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTMf86G_0sFYQ3nQduwosb1ZyDeVvCDLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311069201488:android:3273bb7d9fef64a7f56d55",
+        "android_client_info": {
+          "package_name": "com.befill.wholesaler"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTMf86G_0sFYQ3nQduwosb1ZyDeVvCDLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
