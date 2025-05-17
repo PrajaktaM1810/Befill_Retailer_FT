@@ -387,7 +387,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   const SizedBox(height: Dimensions.paddingSizeLarge),
                                 ],
-
                                 if((configModel.customerLogin?.loginOption?.socialMediaLogin == 1) && configModel.customerLogin?.loginOption?.otpLogin != 1)
                                   Row(
                                     children: [

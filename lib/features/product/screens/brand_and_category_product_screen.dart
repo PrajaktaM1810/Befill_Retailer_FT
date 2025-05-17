@@ -31,7 +31,6 @@ class _BrandAndCategoryProductScreenState extends State<BrandAndCategoryProductS
   }
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: CustomAppBar(title: widget.name),
       body: Consumer<ProductController>(

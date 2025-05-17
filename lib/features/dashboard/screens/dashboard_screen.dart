@@ -36,9 +36,6 @@ class DashBoardScreenState extends State<DashBoardScreen> {
 
   bool singleVendor = false;
 
-
-
-
   @override
   void initState() {
     super.initState();
@@ -97,12 +94,7 @@ class DashBoardScreenState extends State<DashBoardScreen> {
     //     ]),
     //   ),
     // ),
-
-
-
-
     NetworkInfo.checkConnectivity(context);
-
   }
 
   @override
@@ -136,7 +128,6 @@ class DashBoardScreenState extends State<DashBoardScreen> {
           child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: _getBottomWidget(singleVendor)))));
   }
-
 
   void _setPage(int pageIndex) {
     setState(() {

@@ -338,9 +338,6 @@ class AuthRepository implements AuthRepoInterface {
     }
   }
 
-
-
-
   @override
   Future<void> saveUserEmailAndPassword(String userData) async {
     try {

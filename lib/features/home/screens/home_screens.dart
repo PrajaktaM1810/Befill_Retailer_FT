@@ -47,7 +47,6 @@ import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
 import 'package:flutter_sixvalley_ecommerce/utill/images.dart';
 import 'package:provider/provider.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -102,10 +101,7 @@ class HomePage extends StatefulWidget {
 
     productController.getRecommendedProduct();
 
-
     productController.getClearanceAllProductList('1');
-
-
 
       if(notificationController.notificationModel == null ||
           (notificationController.notificationModel != null
@@ -117,17 +113,11 @@ class HomePage extends StatefulWidget {
       if(Provider.of<AuthController>(Get.context!, listen: false).isLoggedIn() && profileController.userInfoModel == null){
         profileController.getUserInfo(Get.context!);
       }
-
-
     }
-
-
 }
 
 class _HomePageState extends State<HomePage> {
   final ScrollController _scrollController = ScrollController();
-
-
 
   void passData(int index, String title) {
     index = index;

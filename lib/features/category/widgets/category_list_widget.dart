@@ -20,7 +20,6 @@ class CategoryListWidget extends StatelessWidget {
     return Consumer<CategoryController>(
       builder: (context, categoryProvider, child) {
         return Column(children: [
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraExtraSmall),
             child: TitleRowWidget(
