@@ -20,7 +20,7 @@ class ProductListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
     int offset = 1;
     scrollController?.addListener(() {
       if(scrollController!.position.maxScrollExtent == scrollController!.position.pixels &&
@@ -43,8 +43,6 @@ class ProductListWidget extends StatelessWidget {
         }
 
 
-
-
         else if(productType == ProductType.justForYou){
 
         }
@@ -57,7 +55,6 @@ class ProductListWidget extends StatelessWidget {
             Provider.of<ProductController>(context, listen: false).getLatestProductList(offset);
           }
         }else{
-
         }
       }
     });
@@ -68,8 +65,6 @@ class ProductListWidget extends StatelessWidget {
 
         // print(productType);
         // print("=====>>${prodProvider.latestProductList}<<======");
-
-
         if(productType == ProductType.latestProduct) {
           productList = prodProvider.lProductList;
         }

@@ -33,17 +33,18 @@ class AuthRepository implements AuthRepoInterface {
   Future<ApiResponse> registration(Map<String, dynamic> register) async {
     try {
       Response response = await dioClient!.post(AppConstants.registrationUri, data: register);
+      print("API_Response: ${response.data}");
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
 
+
   @override
   Future<ApiResponse> login(String? userInput, String? password, String? type) async {
     try {
       print('Login Request Parameters: email_or_phone=$userInput, password=$password, type=$type, user_type=Retailer');
-
       Response response = await dioClient!.post(
         AppConstants.loginUri,
         data: {

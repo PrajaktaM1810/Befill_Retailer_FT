@@ -45,8 +45,6 @@ class SignUpWidgetState extends State<SignUpWidget> {
   RegisterModel register = RegisterModel();
   final GlobalKey<FormState> signUpFormKey = GlobalKey<FormState>();
 
-
-
   route(bool isRoute, String? token, String? tempToken, String? errorMessage) async {
     var splashController = Provider.of<SplashController>(context,listen: false);
     var authController = Provider.of<AuthController>(context, listen: false);
@@ -59,10 +57,9 @@ class SignUpWidgetState extends State<SignUpWidget> {
             authController.updateEmail(_emailController.text.toString());
             // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) =>
             //     VerificationScreen(tempToken,'',_emailController.text.toString())), (route) => false);
-
           }
         });
-      }else if(splashController.configModel!.phoneVerification!){
+      } else if(splashController.configModel!.phoneVerification!){
         authController.sendOtpToPhone(phone,tempToken!).then((value) async {
           if (value.isSuccess) {
             authController.updatePhone(phone);
@@ -71,7 +68,7 @@ class SignUpWidgetState extends State<SignUpWidget> {
 
           }
         });
-      }else{
+      } else {
         await profileController.getUserInfo(context);
         Navigator.pushAndRemoveUntil(Get.context!, MaterialPageRoute(builder: (_) =>
         const DashBoardScreen()), (route) => false);
@@ -83,20 +80,16 @@ class SignUpWidgetState extends State<SignUpWidget> {
         _confirmPasswordController.clear();
         _referController.clear();
       }
-
-
     }
     else {
       showCustomSnackBar(errorMessage, context);
     }
   }
 
-
   @override
   void initState() {
     super.initState();
    Provider.of<AuthController>(context, listen: false).setCountryCode(CountryCode.fromCountryCode(Provider.of<SplashController>(context, listen: false).configModel!.countryCode!).dialCode!, notify: false);
-
   }
 
   @override
@@ -175,9 +168,6 @@ class SignUpWidgetState extends State<SignUpWidget> {
                           inputAction: TextInputAction.next,
                           inputType: TextInputType.phone)),
 
-
-
-
                       Container(margin: const EdgeInsets.only(left: Dimensions.marginSizeDefault,
                           right: Dimensions.marginSizeDefault, top: Dimensions.marginSizeSmall),
                         child: CustomTextFieldWidget(
@@ -248,7 +238,6 @@ class SignUpWidgetState extends State<SignUpWidget> {
                         } : null, buttonText: getTranslated('sign_up', context),
                       ),
                     )),
-
 
                     authProvider.isLoading ? const SizedBox() :
                     Center(child: Padding(padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeExtraLarge),

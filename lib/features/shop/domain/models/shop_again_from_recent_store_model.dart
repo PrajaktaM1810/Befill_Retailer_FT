@@ -12,7 +12,7 @@ class ShopAgainFromRecentStoreModel {
   int? reviewsCount;
   Seller? seller;
   bool? isAddedByAdmin;
-
+  List<String>? retailerQuantities;
 
   ShopAgainFromRecentStoreModel(
       {this.id,
@@ -25,7 +25,8 @@ class ShopAgainFromRecentStoreModel {
         this.reviewsCount,
         this.seller,
         this.isAddedByAdmin,
-       });
+        this.retailerQuantities,
+      });
 
   ShopAgainFromRecentStoreModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -37,9 +38,11 @@ class ShopAgainFromRecentStoreModel {
     reviewsCount = int.parse(json['reviews_count'].toString());
     seller = json['seller'] != null ? Seller.fromJson(json['seller']) : null;
     thumbnailFullUrl = json['thumbnail_full_url'] != null
-      ? ImageFullUrl.fromJson(json['thumbnail_full_url'])
-      : null;
+        ? ImageFullUrl.fromJson(json['thumbnail_full_url'])
+        : null;
     isAddedByAdmin = json['added_by'] == 'admin';
+    if (json['retailer_quantities'] != null) {
+      retailerQuantities = List<String>.from((json['retailer_quantities'] as String).replaceAll('[', '').replaceAll(']', '').replaceAll('"', '').split(','));
+    }
   }
 }
-

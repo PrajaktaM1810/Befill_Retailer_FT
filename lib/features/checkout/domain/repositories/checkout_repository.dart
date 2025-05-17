@@ -18,17 +18,17 @@ class CheckoutRepository implements CheckoutRepositoryInterface{
 
 
   @override
-  Future<ApiResponse> cashOnDeliveryPlaceOrder(
-      {String? addressID,
-        String? couponCode,
-        String? couponDiscountAmount,
-        String? billingAddressId,
-        String? orderNote,
-        bool? isCheckCreateAccount,
-        String? password,
-        double? cashChangeAmount,
-        String? currentCurrencyCode,
-      }) async {
+  Future<ApiResponse> cashOnDeliveryPlaceOrder({
+    String? addressID,
+    String? couponCode,
+    String? couponDiscountAmount,
+    String? billingAddressId,
+    String? orderNote,
+    bool? isCheckCreateAccount,
+    String? password,
+    double? cashChangeAmount,
+    String? currentCurrencyCode,
+  }) async {
     try {
       // Build query parameters map
       final Map<String, dynamic> queryParams = {
@@ -41,19 +41,33 @@ class CheckoutRepository implements CheckoutRepositoryInterface{
         'is_guest': '${Provider.of<AuthController>(Get.context!, listen: false).isLoggedIn() ? 0 : 1}',
         'is_check_create_account': (isCheckCreateAccount ?? false) ? 1 : 0,
         'password': password,
-        'bring_change_amount' : cashChangeAmount,
+        'bring_change_amount': cashChangeAmount,
         'current_currency_code': currentCurrencyCode,
-
       };
 
-      debugPrint('----------(order_place)-----$queryParams');
+      // Print full URL with query parameters
+      final uri = Uri.parse(AppConstants.orderPlaceUri)
+          .replace(queryParameters: queryParams.map((k, v) => MapEntry(k, v?.toString() ?? '')));
+      debugPrint('Request URL: $uri');
+
+      // Print query parameters
+      debugPrint('Request Parameters:');
+      queryParams.forEach((key, value) {
+        debugPrint('$key : $value');
+      });
 
       final response = await dioClient!.get(AppConstants.orderPlaceUri, queryParameters: queryParams);
+
+      // Print response
+      debugPrint('Response: $response');
+
       return ApiResponse.withSuccess(response);
     } catch (e) {
+      debugPrint('Error: $e');
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
 
 
   @override

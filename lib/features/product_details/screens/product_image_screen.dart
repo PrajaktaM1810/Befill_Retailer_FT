@@ -10,7 +10,6 @@ class ProductImageScreen extends StatefulWidget {
   final String? title;
   final List<ImageFullUrl>? imageList;
   const ProductImageScreen({super.key, required this.title, required this.imageList});
-
   @override
   ProductImageScreenState createState() => ProductImageScreenState();
 }
@@ -61,32 +60,34 @@ class ProductImageScreenState extends State<ProductImageScreen> {
                 },
               ),
 
-              pageIndex != 0 ? Positioned(left: 5, top: 0, bottom: 0,
-                child: Container(alignment: Alignment.center,
-                  decoration: const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
-                  child: InkWell(
-                    onTap: () {
-                      if(pageIndex! > 0) {
-                        _pageController!.animateToPage(pageIndex!-1, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
-                      }
-                    },
-                    child: const Icon(Icons.chevron_left_outlined, size: 40),
-                  ),
-                ),
-              ) : const SizedBox.shrink(),
+              // pageIndex != 0 ? Positioned(left: 5, top: 0, bottom: 0,
+              //   child: Container(alignment: Alignment.center,
+              //     decoration: const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+              //     child: InkWell(
+              //       onTap: () {
+              //         if(pageIndex! > 0) {
+              //           _pageController!.animateToPage(pageIndex!-1, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+              //         }
+              //       },
+              //       child: const Icon(Icons.chevron_left_outlined, size: 40),
+              //     ),
+              //   ),
+              // ) : const SizedBox.shrink(),
+              //
+              // pageIndex != widget.imageList!.length-1 ? Positioned(
+              //   right: 5, top: 0, bottom: 0,
+              //   child: Container(alignment: Alignment.center,
+              //     decoration: const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+              //     child: InkWell(
+              //       onTap: () {
+              //         if(pageIndex! < widget.imageList!.length) {
+              //           _pageController!.animateToPage(pageIndex!+1, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+              //         }
+              //       },
+              //       child: const Icon(Icons.chevron_right_outlined, size: 40))),
+              // ) : const SizedBox.shrink(),
+              //
 
-              pageIndex != widget.imageList!.length-1 ? Positioned(
-                right: 5, top: 0, bottom: 0,
-                child: Container(alignment: Alignment.center,
-                  decoration: const BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
-                  child: InkWell(
-                    onTap: () {
-                      if(pageIndex! < widget.imageList!.length) {
-                        _pageController!.animateToPage(pageIndex!+1, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
-                      }
-                    },
-                    child: const Icon(Icons.chevron_right_outlined, size: 40))),
-              ) : const SizedBox.shrink(),
             ],
           ),
         ),

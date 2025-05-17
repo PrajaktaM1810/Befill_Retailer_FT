@@ -13,8 +13,6 @@ class AppConstants {
   static const String name = 'name';
   static const String categoriesUri = '/api/v1/categories?guest_id=1';
   static const String brandUri = '/api/v1/brands?guest_id=1';
-
-
   static const String brandProductUri = '/api/v1/brands/products/';
   static const String categoryProductUri = '/api/v1/categories/products/';
   static const String registrationUri = '/api/v1/auth/register';

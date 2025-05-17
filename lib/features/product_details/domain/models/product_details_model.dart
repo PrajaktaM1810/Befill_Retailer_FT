@@ -782,7 +782,6 @@ class Customer {
   String? get image => _image;
   String? get email => _email;
 
-
   Customer.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _fName = json['f_name'];
@@ -790,7 +789,6 @@ class Customer {
     _phone = json['phone'];
     _image = json['image'];
     _email = json['email'];
-
   }
 
   Map<String, dynamic> toJson() {
@@ -894,3 +892,6 @@ class DigitalVariation {
     return data;
   }
 }
+
+
+// Buy now

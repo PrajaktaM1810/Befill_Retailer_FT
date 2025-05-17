@@ -10,14 +10,8 @@ import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dar
 import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
 import 'package:flutter_sixvalley_ecommerce/common/basewidget/title_row_widget.dart';
 import 'package:provider/provider.dart';
-
-
-
 class LatestProductListWidget extends StatelessWidget {
   const LatestProductListWidget({super.key});
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +44,6 @@ class LatestProductListWidget extends StatelessWidget {
             },
           ),
         ),
-
-
-
 
       ]) : prodProvider.latestProductList == null ? const SliderProductShimmerWidget() : const SizedBox();
     });

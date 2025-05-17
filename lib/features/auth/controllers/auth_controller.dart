@@ -26,6 +26,7 @@ import 'package:flutter_sixvalley_ecommerce/main.dart';
 import 'package:flutter_sixvalley_ecommerce/localization/controllers/localization_controller.dart';
 import 'package:flutter_sixvalley_ecommerce/common/basewidget/show_custom_snakbar_widget.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class AuthController with ChangeNotifier {
@@ -54,6 +55,16 @@ class AuthController with ChangeNotifier {
 
   bool _resendButtonLoading = false;
   bool get resendButtonLoading => _resendButtonLoading;
+
+
+  XFile? pickedPanCard;
+  XFile? get pan => pickedPanCard;
+
+  XFile? pickedUdyamCard;
+  XFile? get udyam => pickedUdyamCard;
+
+  XFile? pickedAdhar;
+  XFile? get gst => pickedAdhar;
 
 
   bool _sendToEmail = false;
@@ -219,7 +230,29 @@ class AuthController with ChangeNotifier {
     }
   }
 
+  void pickPanCardImage(bool isRemove) async {
+    if (isRemove) {
+      pickedPanCard = null;
+    } else {
+      pickedPanCard = await ImagePicker().pickImage(source: ImageSource.gallery);
+    }
+  }
 
+  void pickUdyamCardImage(bool isRemove) async {
+    if (isRemove) {
+      pickedUdyamCard = null;
+    } else {
+      pickedUdyamCard = await ImagePicker().pickImage(source: ImageSource.gallery);
+    }
+  }
+
+  void pickGstImage(bool isRemove) async {
+    if (isRemove) {
+      pickedAdhar = null;
+    } else {
+      pickedAdhar = await ImagePicker().pickImage(source: ImageSource.gallery);
+    }
+  }
 
   Future<ResponseModel>  login (String? userInput, String? password, String? type, FromPage? fromPage) async {
     _isLoading = true;

@@ -57,12 +57,12 @@ class OrderAmountCalculation extends StatelessWidget {
 
           // && orderProvider.orders!.paymentMethod  == "cash" && orderProvider.orders!.paidAmount! > (itemTotalAmount + shippingCost - eeDiscount! - orderProvider.orders!.discountAmount! - discount  + tax)
           if (orderProvider.orders!.orderType == 'POS')
-          AmountWidget(title: getTranslated('paid_amount', context),
-            amount: PriceConverter.convertPrice(context, orderProvider.orders!.paidAmount)),
+            AmountWidget(title: getTranslated('paid_amount', context),
+                amount: PriceConverter.convertPrice(context, orderProvider.orders!.paidAmount)),
 
           if (orderProvider.orders!.orderType == 'POS')
-          AmountWidget(title: getTranslated('change_amount', context),
-            amount: PriceConverter.convertPrice(context, orderProvider.orders!.paidAmount! - double.parse((itemTotalAmount + shippingCost - eeDiscount! - orderProvider.orders!.discountAmount! - discount  + tax).toStringAsFixed(2)))),
+            AmountWidget(title: getTranslated('change_amount', context),
+                amount: PriceConverter.convertPrice(context, orderProvider.orders!.paidAmount! - double.parse((itemTotalAmount + shippingCost - eeDiscount! - orderProvider.orders!.discountAmount! - discount  + tax).toStringAsFixed(2)))),
 
 
         ]));

@@ -71,191 +71,191 @@ class _MoreScreenState extends State<MoreScreen> {
             centerTitle: false,
             automaticallyImplyLeading: false,
             backgroundColor: Theme.of(context).highlightColor,
-          collapsedHeight: 160,
-          flexibleSpace: const ProfileInfoSectionWidget()),
+            collapsedHeight: 160,
+            flexibleSpace: const ProfileInfoSectionWidget()),
 
-          SliverToBoxAdapter(child: Container(decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-
-
-              const Padding(padding: EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
-                  child: Center(child: MoreHorizontalSection())),
+        SliverToBoxAdapter(child: Container(decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
 
 
+            const Padding(padding: EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
+                child: Center(child: MoreHorizontalSection())),
 
 
-              Padding(padding: const EdgeInsets.fromLTRB( Dimensions.paddingSizeDefault,
-                  Dimensions.paddingSizeDefault,  Dimensions.paddingSizeDefault,0),
-                child: Text(getTranslated('general', context)??'',
-                  style: textRegular.copyWith(fontSize: Dimensions.fontSizeExtraLarge,
-                      color: Theme.of(context).colorScheme.onPrimary), ),),
 
-              Consumer<SplashController>(
+
+            Padding(padding: const EdgeInsets.fromLTRB( Dimensions.paddingSizeDefault,
+                Dimensions.paddingSizeDefault,  Dimensions.paddingSizeDefault,0),
+              child: Text(getTranslated('general', context)??'',
+                style: textRegular.copyWith(fontSize: Dimensions.fontSizeExtraLarge,
+                    color: Theme.of(context).colorScheme.onPrimary), ),),
+
+            Consumer<SplashController>(
                 builder: (context, splashController, _){
                   return Padding(padding:  const EdgeInsets.all(Dimensions.paddingSizeDefault),
-                      child: Container(padding:  const EdgeInsets.all(Dimensions.paddingSizeSmall),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(Dimensions.fontSizeExtraSmall),
-                              boxShadow: [BoxShadow(color: Theme.of(context).hintColor.withValues(alpha:.05),
-                                  blurRadius: 1, spreadRadius: 1, offset: const Offset(0,1))],
-                              color: Provider.of<ThemeController>(context).darkTheme ?
-                              Colors.white.withValues(alpha:.05) : Theme.of(context).cardColor),
-                          child: Column(children: [
-
-
-                            MenuButtonWidget(image: Images.trackOrderIcon, title: getTranslated('TRACK_ORDER', context),
-                                navigateTo: const GuestTrackOrderScreen(),
-                            ),
-
-                            if(Provider.of<AuthController>(context, listen: false).isLoggedIn())
-                              MenuButtonWidget(image: Images.user, title: getTranslated('profile', context),
-                                  navigateTo: const ProfileScreen1(),
-                              ),
-
-                            MenuButtonWidget(image: Images.address, title: getTranslated('addresses', context),
-                                navigateTo: const AddressListScreen(),
-                            ),
-
-                            MenuButtonWidget(image: Images.coupon, title: getTranslated('coupons', context),
-                                navigateTo: const CouponList(),
-                            ),
-
-                            if(!isGuestMode)
-                              if(splashController.configModel?.refEarningStatus == "1")
-                              MenuButtonWidget(image: Images.refIcon, title: getTranslated('refer_and_earn', context),
-                                  isProfile: true,
-                                  navigateTo: const ReferAndEarnScreen(),
-                              ),
-
-
-                            MenuButtonWidget(image: Images.category, title: getTranslated('CATEGORY', context),
-                                navigateTo: const CategoryScreen(),
-                            ),
-
-                            if(Provider.of<AuthController>(context, listen: false).isLoggedIn())
-                              MenuButtonWidget(image: Images.restockIcon, title: getTranslated('restock_requests', context),
-                                  navigateTo: const RestockListScreen(),
-                              ),
-
-                            if(splashController.configModel!.activeTheme != "default" && authController.isLoggedIn())
-                              MenuButtonWidget(image: Images.compare, title: getTranslated('compare_products', context),
-                                  navigateTo: const CompareProductScreen(),
-                              ),
-
-                            MenuButtonWidget(image: Images.notification, title: getTranslated('notification', context,),
-                                isNotification: true,
-                                navigateTo: const NotificationScreen(),
-                            ),
-
-                            MenuButtonWidget(image: Images.settings, title: getTranslated('settings', context),
-                                navigateTo: const SettingsScreen(),
-                            ),
-
-                            if(splashController.configModel?.blogUrl?.isNotEmpty ?? false) MenuButtonWidget(
-                              image: Images.blogIcon,
-                              title: getTranslated('blog', context),
-                              navigateTo: BlogScreen(url: splashController.configModel?.blogUrl ?? '',),
-                            ),
-                          ]),
-                      ),
-                  );
-                }
-              ),
-
-
-              Padding(padding: const EdgeInsets.fromLTRB( Dimensions.paddingSizeDefault,
-                  Dimensions.paddingSizeDefault,  Dimensions.paddingSizeDefault,0),
-                  child: Text(getTranslated('help_and_support', context)??'',
-                      style: textRegular.copyWith(fontSize: Dimensions.fontSizeExtraLarge,
-                          color: Theme.of(context).colorScheme.onPrimary))),
-
-
-              Padding(padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
-                  child: Container(padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
+                    child: Container(padding:  const EdgeInsets.all(Dimensions.paddingSizeSmall),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(Dimensions.fontSizeExtraSmall),
                           boxShadow: [BoxShadow(color: Theme.of(context).hintColor.withValues(alpha:.05),
-                              blurRadius: 1, spreadRadius: 1,offset: const Offset(0,1))],
+                              blurRadius: 1, spreadRadius: 1, offset: const Offset(0,1))],
                           color: Provider.of<ThemeController>(context).darkTheme ?
                           Colors.white.withValues(alpha:.05) : Theme.of(context).cardColor),
                       child: Column(children: [
 
-                        singleVendor?const SizedBox():
-                        MenuButtonWidget(image: Images.chats, title: getTranslated('inbox', context),
-                            navigateTo: const InboxScreen()),
 
-                        MenuButtonWidget(image: Images.callIcon, title: getTranslated('contact_us', context),
-                            navigateTo: const ContactUsScreen()),
+                        MenuButtonWidget(image: Images.trackOrderIcon, title: getTranslated('TRACK_ORDER', context),
+                          navigateTo: const GuestTrackOrderScreen(),
+                        ),
 
+                        if(Provider.of<AuthController>(context, listen: false).isLoggedIn())
+                          MenuButtonWidget(image: Images.user, title: getTranslated('profile', context),
+                            navigateTo: const ProfileScreen1(),
+                          ),
 
-                        MenuButtonWidget(image: Images.preference, title: getTranslated('support_ticket', context),
-                            navigateTo: const SupportTicketScreen()),
+                        MenuButtonWidget(image: Images.address, title: getTranslated('addresses', context),
+                          navigateTo: const AddressListScreen(),
+                        ),
 
-                        MenuButtonWidget(image: Images.termCondition, title: getTranslated('terms_condition', context),
-                            navigateTo: HtmlViewScreen(title: getTranslated('terms_condition', context),
-                              url: Provider.of<SplashController>(context, listen: false).configModel!.termsConditions,)),
+                        MenuButtonWidget(image: Images.coupon, title: getTranslated('coupons', context),
+                          navigateTo: const CouponList(),
+                        ),
 
-                        MenuButtonWidget(image: Images.privacyPolicy, title: getTranslated('privacy_policy', context),
-                            navigateTo: HtmlViewScreen(title: getTranslated('privacy_policy', context),
-                              url: Provider.of<SplashController>(context, listen: false).configModel!.privacyPolicy,)),
-
-                        if(Provider.of<SplashController>(context, listen: false).configModel!.refundPolicy?.status ==1)
-                          MenuButtonWidget(image: Images.termCondition, title: getTranslated('refund_policy', context),
-                              navigateTo: HtmlViewScreen(title: getTranslated('refund_policy', context),
-                                url: Provider.of<SplashController>(context, listen: false).configModel!.refundPolicy!.content,)),
-
-                        if(Provider.of<SplashController>(context, listen: false).configModel!.returnPolicy?.status ==1)
-                          MenuButtonWidget(image: Images.termCondition, title: getTranslated('return_policy', context),
-                              navigateTo: HtmlViewScreen(title: getTranslated('return_policy', context),
-                                url: Provider.of<SplashController>(context, listen: false).configModel!.returnPolicy!.content,)),
-
-                        if(Provider.of<SplashController>(context, listen: false).configModel!.cancellationPolicy?.status ==1)
-                          MenuButtonWidget(image: Images.termCondition, title: getTranslated('cancellation_policy', context),
-                              navigateTo: HtmlViewScreen(title: getTranslated('cancellation_policy', context),
-                                url: Provider.of<SplashController>(context, listen: false).configModel!.cancellationPolicy!.content,)),
-
-                        if(Provider.of<SplashController>(context, listen: false).configModel!.shippingPolicy?.status ==1)
-                          MenuButtonWidget(image: Images.termCondition, title: getTranslated('shipping_policy', context),
-                              navigateTo: HtmlViewScreen(title: getTranslated('shipping_policy', context),
-                                url: Provider.of<SplashController>(context, listen: false).configModel!.shippingPolicy!.content,)),
-
-                        MenuButtonWidget(image: Images.faq, title: getTranslated('faq', context),
-                            navigateTo: FaqScreen(title: getTranslated('faq', context),)),
-
-                        MenuButtonWidget(image: Images.user, title: getTranslated('about_us', context),
-                            navigateTo: HtmlViewScreen(title: getTranslated('about_us', context),
-                              url: Provider.of<SplashController>(context, listen: false).configModel!.aboutUs,))]))),
+                        if(!isGuestMode)
+                          if(splashController.configModel?.refEarningStatus == "1")
+                            MenuButtonWidget(image: Images.refIcon, title: getTranslated('refer_and_earn', context),
+                              isProfile: true,
+                              navigateTo: const ReferAndEarnScreen(),
+                            ),
 
 
-              ListTile(
-                  leading: SizedBox(width: 30, child: Image.asset(Images.logOut, color: Theme.of(context).primaryColor,)),
-                  title: Text(isGuestMode? getTranslated('sign_in', context)! : getTranslated('sign_out', context)!,
-                      style: titilliumRegular.copyWith(fontSize: Dimensions.fontSizeLarge)),
-                  onTap: (){
-                    if(isGuestMode){
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => const AuthScreen()));
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
-                    } else {
-                      showModalBottomSheet(backgroundColor: Colors.transparent,
-                          context: context, builder: (_)=>  const LogoutCustomBottomSheetWidget());
-                    }
-                  },
-              ),
+                        MenuButtonWidget(image: Images.category, title: getTranslated('CATEGORY', context),
+                          navigateTo: const CategoryScreen(),
+                        ),
 
-              Padding(
-                padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeDefault),
-                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text(
-                      '${getTranslated('version', context)} ${AppConstants.appVersion}',
-                      style: textRegular.copyWith(
-                          fontSize: Dimensions.fontSizeLarge,
-                          color: Theme.of(context).hintColor),
-                  ),
-                ]),
-              ),
-            ]),
-          ))
-        ],
+                        if(Provider.of<AuthController>(context, listen: false).isLoggedIn())
+                          MenuButtonWidget(image: Images.restockIcon, title: getTranslated('restock_requests', context),
+                            navigateTo: const RestockListScreen(),
+                          ),
+
+                        if(splashController.configModel!.activeTheme != "default" && authController.isLoggedIn())
+                          MenuButtonWidget(image: Images.compare, title: getTranslated('compare_products', context),
+                            navigateTo: const CompareProductScreen(),
+                          ),
+
+                        MenuButtonWidget(image: Images.notification, title: getTranslated('notification', context,),
+                          isNotification: true,
+                          navigateTo: const NotificationScreen(),
+                        ),
+
+                        MenuButtonWidget(image: Images.settings, title: getTranslated('settings', context),
+                          navigateTo: const SettingsScreen(),
+                        ),
+
+                        if(splashController.configModel?.blogUrl?.isNotEmpty ?? false) MenuButtonWidget(
+                          image: Images.blogIcon,
+                          title: getTranslated('blog', context),
+                          navigateTo: BlogScreen(url: splashController.configModel?.blogUrl ?? '',),
+                        ),
+                      ]),
+                    ),
+                  );
+                }
+            ),
+
+
+            Padding(padding: const EdgeInsets.fromLTRB( Dimensions.paddingSizeDefault,
+                Dimensions.paddingSizeDefault,  Dimensions.paddingSizeDefault,0),
+                child: Text(getTranslated('help_and_support', context)??'',
+                    style: textRegular.copyWith(fontSize: Dimensions.fontSizeExtraLarge,
+                        color: Theme.of(context).colorScheme.onPrimary))),
+
+
+            Padding(padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
+                child: Container(padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.fontSizeExtraSmall),
+                        boxShadow: [BoxShadow(color: Theme.of(context).hintColor.withValues(alpha:.05),
+                            blurRadius: 1, spreadRadius: 1,offset: const Offset(0,1))],
+                        color: Provider.of<ThemeController>(context).darkTheme ?
+                        Colors.white.withValues(alpha:.05) : Theme.of(context).cardColor),
+                    child: Column(children: [
+
+                      singleVendor?const SizedBox():
+                      MenuButtonWidget(image: Images.chats, title: getTranslated('inbox', context),
+                          navigateTo: const InboxScreen()),
+
+                      MenuButtonWidget(image: Images.callIcon, title: getTranslated('contact_us', context),
+                          navigateTo: const ContactUsScreen()),
+
+
+                      MenuButtonWidget(image: Images.preference, title: getTranslated('support_ticket', context),
+                          navigateTo: const SupportTicketScreen()),
+
+                      MenuButtonWidget(image: Images.termCondition, title: getTranslated('terms_condition', context),
+                          navigateTo: HtmlViewScreen(title: getTranslated('terms_condition', context),
+                            url: Provider.of<SplashController>(context, listen: false).configModel!.termsConditions,)),
+
+                      MenuButtonWidget(image: Images.privacyPolicy, title: getTranslated('privacy_policy', context),
+                          navigateTo: HtmlViewScreen(title: getTranslated('privacy_policy', context),
+                            url: Provider.of<SplashController>(context, listen: false).configModel!.privacyPolicy,)),
+
+                      if(Provider.of<SplashController>(context, listen: false).configModel!.refundPolicy?.status ==1)
+                        MenuButtonWidget(image: Images.termCondition, title: getTranslated('refund_policy', context),
+                            navigateTo: HtmlViewScreen(title: getTranslated('refund_policy', context),
+                              url: Provider.of<SplashController>(context, listen: false).configModel!.refundPolicy!.content,)),
+
+                      if(Provider.of<SplashController>(context, listen: false).configModel!.returnPolicy?.status ==1)
+                        MenuButtonWidget(image: Images.termCondition, title: getTranslated('return_policy', context),
+                            navigateTo: HtmlViewScreen(title: getTranslated('return_policy', context),
+                              url: Provider.of<SplashController>(context, listen: false).configModel!.returnPolicy!.content,)),
+
+                      if(Provider.of<SplashController>(context, listen: false).configModel!.cancellationPolicy?.status ==1)
+                        MenuButtonWidget(image: Images.termCondition, title: getTranslated('cancellation_policy', context),
+                            navigateTo: HtmlViewScreen(title: getTranslated('cancellation_policy', context),
+                              url: Provider.of<SplashController>(context, listen: false).configModel!.cancellationPolicy!.content,)),
+
+                      if(Provider.of<SplashController>(context, listen: false).configModel!.shippingPolicy?.status ==1)
+                        MenuButtonWidget(image: Images.termCondition, title: getTranslated('shipping_policy', context),
+                            navigateTo: HtmlViewScreen(title: getTranslated('shipping_policy', context),
+                              url: Provider.of<SplashController>(context, listen: false).configModel!.shippingPolicy!.content,)),
+
+                      MenuButtonWidget(image: Images.faq, title: getTranslated('faq', context),
+                          navigateTo: FaqScreen(title: getTranslated('faq', context),)),
+
+                      MenuButtonWidget(image: Images.user, title: getTranslated('about_us', context),
+                          navigateTo: HtmlViewScreen(title: getTranslated('about_us', context),
+                            url: Provider.of<SplashController>(context, listen: false).configModel!.aboutUs,))]))),
+
+
+            ListTile(
+              leading: SizedBox(width: 30, child: Image.asset(Images.logOut, color: Theme.of(context).primaryColor,)),
+              title: Text(isGuestMode? getTranslated('sign_in', context)! : getTranslated('sign_out', context)!,
+                  style: titilliumRegular.copyWith(fontSize: Dimensions.fontSizeLarge)),
+              onTap: (){
+                if(isGuestMode){
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => const AuthScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+                } else {
+                  showModalBottomSheet(backgroundColor: Colors.transparent,
+                      context: context, builder: (_)=>  const LogoutCustomBottomSheetWidget());
+                }
+              },
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeDefault),
+              child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Text(
+                  '${getTranslated('version', context)} ${AppConstants.appVersion}',
+                  style: textRegular.copyWith(
+                      fontSize: Dimensions.fontSizeLarge,
+                      color: Theme.of(context).hintColor),
+                ),
+              ]),
+            ),
+          ]),
+        ))
+      ],
       ),
     );
   }

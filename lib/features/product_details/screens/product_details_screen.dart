@@ -147,19 +147,11 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                       )),
                     ) : const SizedBox(),
-
-
-
                     const ReviewAndSpecificationSectionWidget(),
-
-
                     details.isReviewSelected?
                     Column(children: [
                       ReviewSection(details: details),
-
                       _ProductDetailsProductListWidget(scrollController: scrollController),
-
-
                     ]):
 
                     Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -175,9 +167,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                       (details.productDetailsModel?.videoUrl != null && details.isValidYouTubeUrl(details.productDetailsModel!.videoUrl!))?
                       YoutubeVideoWidget(url: details.productDetailsModel!.videoUrl):const SizedBox(),
 
-
-                      (details.productDetailsModel != null) ?
-                      ShopInfoWidget(sellerId: details.productDetailsModel!.addedBy == 'seller'? details.productDetailsModel!.userId.toString() : "0") : const SizedBox.shrink(),
+                      // (details.productDetailsModel != null) ?
+                      // ShopInfoWidget(sellerId: details.productDetailsModel!.addedBy == 'seller'? details.productDetailsModel!.userId.toString() : "0") : const SizedBox.shrink(),
 
                       const SizedBox(height: Dimensions.paddingSizeLarge,),
 
@@ -186,9 +177,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                           child: const PromiseWidget()),
 
                       _ProductDetailsProductListWidget(scrollController: scrollController),
-
-
-
                     ],),
                   ],),
                 ],
@@ -220,48 +208,48 @@ class _ProductDetailsProductListWidget extends StatelessWidget {
     return Consumer<ProductDetailsController>(
         builder: (context, productDetailsController, _) {
           return Column(children: [
-            Consumer<SellerProductController>(
-                builder: (context, sellerProductController, _) {
-                  return (sellerProductController.sellerMoreProduct != null && sellerProductController.sellerMoreProduct!.products != null &&
-                      sellerProductController.sellerMoreProduct!.products!.isNotEmpty)?
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical : Dimensions.paddingSizeDefault),
-                    child: TitleRowWidget(title: getTranslated('more_from_the_shop', context),
-                      onTap: (){
-                        if(productDetailsController.productDetailsModel?.addedBy == 'seller') {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => TopSellerProductScreen(
-                            fromMore: true,
-                            sellerId: productDetailsController.productDetailsModel?.seller?.id,
-                            temporaryClose: productDetailsController.productDetailsModel?.seller?.shop?.temporaryClose,
-                            vacationStatus: productDetailsController.productDetailsModel?.seller?.shop?.vacationStatus??false,
-                            vacationEndDate: productDetailsController.productDetailsModel?.seller?.shop?.vacationEndDate,
-                            vacationStartDate: productDetailsController.productDetailsModel?.seller?.shop?.vacationStartDate,
-                            name: productDetailsController.productDetailsModel?.seller?.shop?.name,
-                            banner: productDetailsController.productDetailsModel?.seller?.shop?.bannerFullUrl?.path,
-                            image: productDetailsController.productDetailsModel?.seller?.shop?.imageFullUrl?.path,
-                          )));
-                        } else {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => TopSellerProductScreen(
-                            sellerId: 0,
-                            fromMore: true,
-                            temporaryClose: Provider.of<SplashController>(context, listen: false).configModel?.inhouseTemporaryClose?.status == 1 ,
-                            vacationStatus: Provider.of<SplashController>(context, listen: false).configModel?.inhouseVacationAdd?.status == 1,
-                            vacationEndDate: Provider.of<SplashController>(context, listen: false).configModel?.inhouseVacationAdd?.vacationEndDate,
-                            vacationStartDate: Provider.of<SplashController>(context, listen: false).configModel?.inhouseVacationAdd?.vacationStartDate,
-                            name: Provider.of<SplashController>(context, listen: false).configModel?.companyName,
-                            banner: Provider.of<SplashController>(context, listen: false).configModel?.companyLogo?.path,
-                            image: Provider.of<SplashController>(context, listen: false).configModel?.companyIcon))
-                          );
-                        }
-                      },
-                    ),
-                  ) : const SizedBox();
-                }
-            ),
+            // Consumer<SellerProductController>(
+            //     builder: (context, sellerProductController, _) {
+            //       return (sellerProductController.sellerMoreProduct != null && sellerProductController.sellerMoreProduct!.products != null &&
+            //           sellerProductController.sellerMoreProduct!.products!.isNotEmpty)?
+            //       Padding(
+            //         padding: const EdgeInsets.symmetric(vertical : Dimensions.paddingSizeDefault),
+            //         child: TitleRowWidget(title: getTranslated('more_from_the_shop', context),
+            //           onTap: (){
+            //             if(productDetailsController.productDetailsModel?.addedBy == 'seller') {
+            //               Navigator.push(context, MaterialPageRoute(builder: (_) => TopSellerProductScreen(
+            //                 fromMore: true,
+            //                 sellerId: productDetailsController.productDetailsModel?.seller?.id,
+            //                 temporaryClose: productDetailsController.productDetailsModel?.seller?.shop?.temporaryClose,
+            //                 vacationStatus: productDetailsController.productDetailsModel?.seller?.shop?.vacationStatus??false,
+            //                 vacationEndDate: productDetailsController.productDetailsModel?.seller?.shop?.vacationEndDate,
+            //                 vacationStartDate: productDetailsController.productDetailsModel?.seller?.shop?.vacationStartDate,
+            //                 name: productDetailsController.productDetailsModel?.seller?.shop?.name,
+            //                 banner: productDetailsController.productDetailsModel?.seller?.shop?.bannerFullUrl?.path,
+            //                 image: productDetailsController.productDetailsModel?.seller?.shop?.imageFullUrl?.path,
+            //               )));
+            //             } else {
+            //               Navigator.push(context, MaterialPageRoute(builder: (_) => TopSellerProductScreen(
+            //                 sellerId: 0,
+            //                 fromMore: true,
+            //                 temporaryClose: Provider.of<SplashController>(context, listen: false).configModel?.inhouseTemporaryClose?.status == 1 ,
+            //                 vacationStatus: Provider.of<SplashController>(context, listen: false).configModel?.inhouseVacationAdd?.status == 1,
+            //                 vacationEndDate: Provider.of<SplashController>(context, listen: false).configModel?.inhouseVacationAdd?.vacationEndDate,
+            //                 vacationStartDate: Provider.of<SplashController>(context, listen: false).configModel?.inhouseVacationAdd?.vacationStartDate,
+            //                 name: Provider.of<SplashController>(context, listen: false).configModel?.companyName,
+            //                 banner: Provider.of<SplashController>(context, listen: false).configModel?.companyLogo?.path,
+            //                 image: Provider.of<SplashController>(context, listen: false).configModel?.companyIcon))
+            //               );
+            //             }
+            //           },
+            //         ),
+            //       ) : const SizedBox();
+            //     }
+            // ),
 
-            Padding(padding: const EdgeInsets.symmetric(horizontal : Dimensions.paddingSizeSmall),
-              child: ShopMoreProductViewList(
-                  scrollController: scrollController, sellerId: productDetailsController.productDetailsModel!.userId!)),
+            // Padding(padding: const EdgeInsets.symmetric(horizontal : Dimensions.paddingSizeSmall),
+            //   child: ShopMoreProductViewList(
+            //       scrollController: scrollController, sellerId: productDetailsController.productDetailsModel!.userId!)),
 
             Consumer<ProductController>(
               builder: (context, productController,_) {

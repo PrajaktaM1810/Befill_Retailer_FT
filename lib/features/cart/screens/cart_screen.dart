@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/common/basewidget/custom_loader_widget.dart';
 import 'package:flutter_sixvalley_ecommerce/features/cart/domain/models/cart_model.dart';
 import 'package:flutter_sixvalley_ecommerce/features/shipping/controllers/shipping_controller.dart';
 import 'package:flutter_sixvalley_ecommerce/helper/price_converter.dart';
@@ -45,7 +44,7 @@ class CartScreenState extends State<CartScreen> {
       }
   }
 
-  Color _currentColor = Theme.of(Get.context!).cardColor; // Initial color
+  Color _currentColor = Theme.of(Get.context!).cardColor;
   final Duration duration = const Duration(milliseconds: 500);
   void changeColor() {
     setState(() {
@@ -61,7 +60,6 @@ class CartScreenState extends State<CartScreen> {
       _currentColor = (_currentColor == Theme.of(Get.context!).cardColor) ? Colors.grey.withValues(alpha:.15) : Theme.of(Get.context!).cardColor;
     });
   }
-
 
   @override
   void initState() {
@@ -181,8 +179,6 @@ class CartScreenState extends State<CartScreen> {
                 bottomNavigationBar: (!cart.cartLoading && cartList.isNotEmpty) ?
                 Consumer<SplashController>(
                   builder: (context, configProvider,_) {
-
-
                     return Container(height: cartList.isNotEmpty ? 110 : 0, padding: const EdgeInsets.symmetric(
                       horizontal: Dimensions.paddingSizeDefault,
                       vertical: Dimensions.paddingSizeSmall
@@ -210,9 +206,6 @@ class CartScreenState extends State<CartScreen> {
                                 fontSize: Dimensions.fontSizeLarge)),
                           ]),
                         ),
-
-
-
 
                         InkWell(onTap: () {
                               bool hasNull = false;
@@ -274,7 +267,6 @@ class CartScreenState extends State<CartScreen> {
                                 }
                               }
 
-
                               for(int index = 0; index < sellerGroupList.length; index++) {
                                 if (sellerGroupList[index].shop?.vacationEndDate != null && sellerGroupList[index].shop?.vacationEndDate != '') {
                                   DateTime vacationDate = DateTime.parse(sellerGroupList[index].shop!.vacationEndDate!);
@@ -289,7 +281,6 @@ class CartScreenState extends State<CartScreen> {
                                   }
                                 }
                               }
-
 
                               if(configProvider.configModel?.guestCheckOut == 0 && !Provider.of<AuthController>(context, listen: false).isLoggedIn()){
                                 showModalBottomSheet(backgroundColor: Colors.transparent,context:context, builder: (_)=> const NotLoggedInBottomSheetWidget());
@@ -319,9 +310,7 @@ class CartScreenState extends State<CartScreen> {
                                 showCustomSnackBar(getTranslated('please_select_items', context), context);
                               }
                               else {
-
                                 int sellerGroupLenght = 0;
-
                                 for(CartModel seller in sellerGroupList) {
                                   if(seller.isGroupItemChecked!) {
                                     sellerGroupLenght += 1;
@@ -335,7 +324,6 @@ class CartScreenState extends State<CartScreen> {
                           },
                           child: Container(decoration: BoxDecoration(color: Theme.of(context).primaryColor,
                                 borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall)),
-
                             child: Center(child: Padding(padding: EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall,
                                   vertical: Dimensions.fontSizeSmall),
                                 child: Text(getTranslated('checkout', context)!,
@@ -347,10 +335,9 @@ class CartScreenState extends State<CartScreen> {
                       ]):const SizedBox());
                   }
                 ) : null,
-
-
                 appBar: CustomAppBar(title: getTranslated('my_cart', context), isBackButtonExist: widget.showBackButton),
                 body: Column(children: [
+
 
                   cart.cartLoading ? const Expanded(child: CartPageShimmerWidget()) : sellerList.isNotEmpty ?
                   Expanded(child: Column(children: [
@@ -371,7 +358,6 @@ class CartScreenState extends State<CartScreen> {
                               for(CartModel cart in cartProductList[index]) {
                                 totalCost += (cart.price! - cart.discount!) * cart.quantity!;
                               }
-
                               for(CartModel cart in cartProductList[index]) {
                                 if(cart.productType == 'physical' && cart.isChecked!) {
                                   hasPhysical = true;
@@ -379,7 +365,6 @@ class CartScreenState extends State<CartScreen> {
                                   break;
                                 }
                               }
-
 
                               if (sellerGroupList[index].shop?.vacationEndDate != null && sellerGroupList[index].shop?.vacationEndDate != '') {
                                 DateTime vacationDate = DateTime.parse(sellerGroupList[index].shop!.vacationEndDate!);
@@ -393,71 +378,65 @@ class CartScreenState extends State<CartScreen> {
                                 }
                               }
 
-
                               return AnimatedContainer(
                                 color: ((sellerGroupList[index].minimumOrderAmountInfo! > totalCost) || (configProvider.configModel!.shippingMethod == 'sellerwise_shipping' &&
                                     sellerGroupList[index].shippingType == 'order_wise' && Provider.of<ShippingController>(context, listen: false).shippingList![index].shippingIndex == -1 && sellerGroupList[index].isGroupItemChecked == true)) ? _currentColor :
                                 index.floor().isOdd ? Theme.of(context).colorScheme.onSecondaryContainer : Theme.of(context).canvasColor,
-
                                 duration: duration,
                                 child: Padding(padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeSmall),
                                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                                     sellerGroupList[index].shopInfo!.isNotEmpty ?
-
                                     Padding(padding: const EdgeInsets.only(top: Dimensions.paddingSizeSmall),
                                       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                          Expanded(
-                                            child: Padding(padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall),
-                                                child: Row(children: [
-                                                    SizedBox(
-                                                      height: 24, width: 30,
-                                                      child: Checkbox(
-                                                        visualDensity: VisualDensity.compact,
-                                                        side: WidgetStateBorderSide.resolveWith(
-                                                          (states) => BorderSide(width: 2, color: Theme.of(context).primaryColor.withValues(alpha:0.10))),
-                                                        checkColor: Colors.white,
-                                                        value: sellerGroupList[index].isGroupChecked,
-                                                        onChanged: (bool? value)  async {
-                                                          List<int> ids = [];
-                                                          for (CartModel cart in cartProductList[index]) {
-
-                                                            ids.add(cart.id!);
-                                                          }
-                                                          showDialog(context: context, builder: (ctx)  => const CustomLoaderWidget());
-                                                          await cart.addRemoveCartSelectedItem(ids, sellerGroupList[index].isGroupChecked! ? false : true);
-                                                          Navigator.of(Get.context!).pop();
-                                                        },
-                                                      ),
-                                                    ),
-                                                    Flexible(child: Text(sellerGroupList[index].shopInfo!, maxLines: 1, overflow: TextOverflow.ellipsis,
-                                                          textAlign: TextAlign.start, style: textBold.copyWith(fontSize: Dimensions.fontSizeLarge,
-                                                            color: Provider.of<ThemeController>(context, listen: false).darkTheme?
-                                                            Theme.of(context).hintColor : Theme.of(context).primaryColor)),),
-                                                    Padding(padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
-                                                      child: Text('(${cartProductList[index].length})',
-                                                        style: textBold.copyWith(color: Provider.of<ThemeController>(context, listen: false).darkTheme?
-                                                        Theme.of(context).hintColor : Theme.of(context).primaryColor, fontSize: Dimensions.fontSizeLarge))),
-
-                                                  if(shopClose)
-                                                    JustTheTooltip(
-                                                      backgroundColor: Colors.black87,
-                                                      controller: tooltipController,
-                                                      preferredDirection: AxisDirection.down,
-                                                      tailLength: 10,
-                                                      tailBaseWidth: 20,
-                                                      content: Container(width: 150,
-                                                          padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-                                                          child: Text(getTranslated('store_is_closed', context)!,
-                                                              style: textRegular.copyWith(color: Colors.white, fontSize: Dimensions.fontSizeDefault))),
-                                                      child: InkWell(onTap: ()=>  tooltipController.showTooltip(),
-                                                        child: Padding(padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
-                                                          child: SizedBox(width: 30, child: Image.asset(Images.warning, color: Theme.of(context).colorScheme.error,)),
-                                                        ),
-                                                      ),
-                                                    )
-
-
-                                                  ]))),
+                                          // Expanded(
+                                          //   child: Padding(padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall),
+                                          //       child: Row(children: [
+                                          //           SizedBox(
+                                          //             height: 24, width: 30,
+                                          //             child: Checkbox(
+                                          //               visualDensity: VisualDensity.compact,
+                                          //               side: WidgetStateBorderSide.resolveWith(
+                                          //                 (states) => BorderSide(width: 2, color: Theme.of(context).primaryColor.withValues(alpha:0.10))),
+                                          //               checkColor: Colors.white,
+                                          //               value: sellerGroupList[index].isGroupChecked,
+                                          //               onChanged: (bool? value)  async {
+                                          //                 List<int> ids = [];
+                                          //                 for (CartModel cart in cartProductList[index]) {
+                                          //                   ids.add(cart.id!);
+                                          //                 }
+                                          //                 showDialog(context: context, builder: (ctx)  => const CustomLoaderWidget());
+                                          //                 await cart.addRemoveCartSelectedItem(ids, sellerGroupList[index].isGroupChecked! ? false : true);
+                                          //                 Navigator.of(Get.context!).pop();
+                                          //               },
+                                          //             ),
+                                          //           ),
+                                          //           Flexible(child: Text(sellerGroupList[index].shopInfo!, maxLines: 1, overflow: TextOverflow.ellipsis,
+                                          //                 textAlign: TextAlign.start, style: textBold.copyWith(fontSize: Dimensions.fontSizeLarge,
+                                          //                   color: Provider.of<ThemeController>(context, listen: false).darkTheme?
+                                          //                   Theme.of(context).hintColor : Theme.of(context).primaryColor)),),
+                                          //           Padding(padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
+                                          //             child: Text('(${cartProductList[index].length})',
+                                          //               style: textBold.copyWith(color: Provider.of<ThemeController>(context, listen: false).darkTheme?
+                                          //               Theme.of(context).hintColor : Theme.of(context).primaryColor, fontSize: Dimensions.fontSizeLarge))),
+                                          //
+                                          //         if(shopClose)
+                                          //           JustTheTooltip(
+                                          //             backgroundColor: Colors.black87,
+                                          //             controller: tooltipController,
+                                          //             preferredDirection: AxisDirection.down,
+                                          //             tailLength: 10,
+                                          //             tailBaseWidth: 20,
+                                          //             content: Container(width: 150,
+                                          //                 padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
+                                          //                 child: Text(getTranslated('store_is_closed', context)!,
+                                          //                     style: textRegular.copyWith(color: Colors.white, fontSize: Dimensions.fontSizeDefault))),
+                                          //             child: InkWell(onTap: ()=>  tooltipController.showTooltip(),
+                                          //               child: Padding(padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
+                                          //                 child: SizedBox(width: 30, child: Image.asset(Images.warning, color: Theme.of(context).colorScheme.error,)),
+                                          //               ),
+                                          //             ),
+                                          //           )
+                                          //         ]))),
 
                                         SizedBox(width: 200, child: configProvider.configModel!.shippingMethod =='sellerwise_shipping' &&
                                             sellerGroupList[index].shippingType == 'order_wise' && hasPhysical ?
@@ -643,8 +622,6 @@ class CartScreenState extends State<CartScreen> {
                         ),
                       ),
                     ):const SizedBox(),
-
-
                   ],
                   ),
                   ) : const Expanded(child: NoInternetOrDataScreenWidget(icon: Images.emptyCart, icCart: true,

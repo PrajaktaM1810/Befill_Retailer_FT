@@ -251,7 +251,7 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      // backgroundColor: Theme.of(context).primaryColor,
       key: _globalKey,
       body: Provider.of<SplashController>(context).hasConnection
           ? Center(
@@ -272,7 +272,7 @@ class SplashScreenState extends State<SplashScreen> {
               AppConstants.appName,
               style: textRegular.copyWith(
                 fontSize: Dimensions.fontSizeOverLarge,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
             // Padding(

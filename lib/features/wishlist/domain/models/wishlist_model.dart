@@ -25,8 +25,6 @@ class WishlistModel {
     updatedAt = json['updated_at'];
     productFullInfo = json['product_full_info'] != null ? ProductFullInfo.fromJson(json['product_full_info']) : null;
   }
-
-
 }
 
 class ProductFullInfo {
@@ -70,15 +68,12 @@ class ProductFullInfo {
   String? metaDescription;
   String? metaImage;
   int? requestStatus;
-
   double? shippingCost;
   int? multiplyQty;
-
   String? code;
   int? reviewsCount;
-
   ClearanceSale? clearanceSale;
-
+  List<String>? retailerQuantities;
 
   ProductFullInfo(
       {this.id,
@@ -126,7 +121,8 @@ class ProductFullInfo {
         this.code,
         this.reviewsCount,
         this.clearanceSale,
-        });
+        this.retailerQuantities,
+      });
 
   ProductFullInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -179,11 +175,11 @@ class ProductFullInfo {
     thumbnailFullUrl = json['thumbnail_full_url'] != null
         ? ImageFullUrl.fromJson(json['thumbnail_full_url'])
         : null;
-
-
     clearanceSale = json['clearance_sale'] != null
         ? ClearanceSale.fromJson(json['clearance_sale'])
         : null;
+    if (json['retailer_quantities'] != null) {
+      retailerQuantities = List<String>.from((json['retailer_quantities'] as String).replaceAll('[', '').replaceAll(']', '').replaceAll('"', '').split(','));
+    }
   }
-
 }

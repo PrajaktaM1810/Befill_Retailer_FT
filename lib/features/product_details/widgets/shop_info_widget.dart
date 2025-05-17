@@ -150,8 +150,6 @@ class _ShopInfoWidgetState extends State<ShopInfoWidget> {
                     style: titleRegular.copyWith(color: Theme.of(context).hintColor))]),
                 Padding(padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
                   child: Container(width: 1, height: 10, color: ColorResources.visitShop(context))),
-
-
                 Row(children: [
                   Text(NumberFormat.compact().format(seller.sellerInfoModel!.totalProduct),
                     style: titilliumSemiBold.copyWith(fontSize: Dimensions.fontSizeExtraLarge),),

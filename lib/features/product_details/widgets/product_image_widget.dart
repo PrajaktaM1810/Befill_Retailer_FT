@@ -25,7 +25,6 @@ import 'package:flutter_sixvalley_ecommerce/features/product_details/widgets/fav
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-
 class ProductImageWidget extends StatelessWidget {
   final ProductDetailsModel? productModel;
   ProductImageWidget({super.key, required this.productModel});
@@ -44,7 +43,6 @@ class ProductImageWidget extends StatelessWidget {
                   ProductImageScreen(title: getTranslated('product_image', context),imageList: productModel!.imagesFullUrl))),
               child: (productModel != null && productModel!.imagesFullUrl !=null) ?
 
-
               Padding(padding: const EdgeInsets.all(Dimensions.homePagePadding),
                 child: ClipRRect(borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall),
                   child: Container(decoration:  BoxDecoration(
@@ -56,7 +54,6 @@ class ProductImageWidget extends StatelessWidget {
                       SizedBox(
                           height: MediaQuery.of(context).size.width * 0.8,
                         child: productModel!.imagesFullUrl != null?
-
                         PageView.builder(
                           controller: _controller,
                           itemCount: productModel!.imagesFullUrl!.length,
@@ -71,8 +68,6 @@ class ProductImageWidget extends StatelessWidget {
                           },
                           onPageChanged: (index) => productController.setImageSliderSelectedIndex(index),
                         ):const SizedBox()),
-
-
                       Positioned(left: 0, right: 0, bottom: 10,
                         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                             const SizedBox(),
@@ -80,25 +75,22 @@ class ProductImageWidget extends StatelessWidget {
                             Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: _indicators(context)),
                             const Spacer(),
-
                             Provider.of<ProductDetailsController>(context).imageSliderIndex != null?
                             Padding(padding: const EdgeInsets.only(right: Dimensions.paddingSizeDefault,
                                 bottom: Dimensions.paddingSizeDefault),
                               child: Text('${productController.imageSliderIndex!+1}/${productModel?.imagesFullUrl?.length}'),
                             ):const SizedBox()])),
-
                       Positioned(top: 16, right: 16,
                         child: Column(children: [
                             FavouriteButtonWidget(backgroundColor: ColorResources.getImageBg(context),
                               productId: productModel!.id),
-
                             if(splashController.configModel!.activeTheme != "default")
                             const SizedBox(height: Dimensions.paddingSizeSmall,),
                             if(splashController.configModel!.activeTheme != "default")
                             InkWell(onTap: () {
                               if(Provider.of<AuthController>(context, listen: false).isLoggedIn()){
                                 Provider.of<CompareController>(context, listen: false).addCompareList(productModel!.id!);
-                              }else{
+                              } else {
                                 showModalBottomSheet(backgroundColor: const Color(0x00FFFFFF),
                                     context: context, builder: (_)=> const NotLoggedInBottomSheetWidget());
                               }
@@ -115,22 +107,19 @@ class ProductImageWidget extends StatelessWidget {
                                         child: Image.asset(Images.compare, color: compare.compIds.contains(productModel!.id) ?
                                         Theme.of(context).cardColor : Theme.of(context).primaryColor),)));
                                 })),
-                            const SizedBox(height: Dimensions.paddingSizeSmall,),
-
-
-                            InkWell(onTap: () {
-                                if(productController.sharableLink != null) {
-                                  Share.share(productController.sharableLink!);
-                                }
-                              },
-                              child: Card(elevation: 2,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-                                child: Container(width: 40, height: 40,
-                                  decoration: BoxDecoration(color: Theme.of(context).cardColor, shape: BoxShape.circle),
-                                  child: Padding(padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-                                    child: Image.asset(Images.share, color: Theme.of(context).primaryColor)))))
+                            // const SizedBox(height: Dimensions.paddingSizeSmall,),
+                            // InkWell(onTap: () {
+                            //     if(productController.sharableLink != null) {
+                            //       Share.share(productController.sharableLink!);
+                            //     }
+                            //   },
+                            //   child: Card(elevation: 2,
+                            //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                            //     child: Container(width: 40, height: 40,
+                            //       decoration: BoxDecoration(color: Theme.of(context).cardColor, shape: BoxShape.circle),
+                            //       child: Padding(padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
+                            //         child: Image.asset(Images.share, color: Theme.of(context).primaryColor)))))
                           ])),
-
                       (productModel?.productType == 'digital' && productModel?.previewFileFullUrl != null && productModel?.previewFileFullUrl?.path != '') ?
                         Positioned (right: 10, bottom: 10,
                           child: InkWell(
@@ -165,13 +154,8 @@ class ProductImageWidget extends StatelessWidget {
                             ),
                           ),
                         ) : const SizedBox(),
-
-
-
-
                       ((productModel?.discount ?? 0) > 0 || (productModel?.clearanceSale != null)) ?
                       // DiscountTagWidget(productModel: productModel) : const SizedBox.shrink(),
-
                       Positioned(top: 10, left: 0, child: Container(
                         transform: Matrix4.translationValues(-1, 0, 0),
                         padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall, vertical: Dimensions.paddingSizeExtraSmall),
@@ -187,7 +171,6 @@ class ProductImageWidget extends StatelessWidget {
                             (productModel?.clearanceSale?.discountAmount ?? 0)  > 0
                               ?  productModel?.clearanceSale?.discountAmount
                               : productModel?.discount,
-
                             (productModel?.clearanceSale?.discountAmount ?? 0)  > 0
                               ? productModel?.clearanceSale?.discountType
                               : productModel?.discountType,
@@ -196,12 +179,8 @@ class ProductImageWidget extends StatelessWidget {
                         ))),
                       )) : const SizedBox.shrink(),
 
-
-
                     ])))):
               const SizedBox()),
-
-
           Padding(padding: EdgeInsets.only(left: Provider.of<LocalizationController>(context, listen: false).isLtr?
           Dimensions.homePagePadding:0,
               right: Provider.of<LocalizationController>(context, listen: false).isLtr?
@@ -254,7 +233,6 @@ class ProductImageWidget extends StatelessWidget {
             color: index == Provider.of<ProductDetailsController>(context).imageSliderIndex ?
             Theme.of(context).primaryColor : Theme.of(context).hintColor,
           ),
-
         ),
       ));
     }
@@ -263,7 +241,6 @@ class ProductImageWidget extends StatelessWidget {
 
   void _showPreview(String url, String productName, String fileName, BuildContext context) {
     PreviewType type = Provider.of<ProductDetailsController>(context, listen: false).getFileType(url);
-
     showDialog(context: context, builder: (BuildContext context){
       return Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.radiusDefault)),
